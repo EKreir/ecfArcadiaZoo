@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input class="form-control" type="password" name="password" placeholder="Mot de passe" required>
         </div>
         <button class="btn btn-primary" type="submit">Se connecter</button>
-        <a class="btn btn-secondary" href="index.php">Annuler</a>
+        <a class="btn btn-secondary" href="../index.php">Annuler</a>
     </form>
 </main>
 </body>

@@ -61,7 +61,7 @@ try {
             <button type="submit" class="btn btn-success">Envoyer l'avis</button>
         </form>
 
-        <a class="btn btn-primary mt-3" href="index.php">Retour à l'accueil</a>
+        <a class="btn btn-primary mt-3" href="../index.php">Retour à l'accueil</a>
     </section>
 </main>
 

@@ -60,8 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </header>
 
-<a class="btn btn-success" href="index.php">Retour</a>
-
 <main class="container mt-5">
     <section>
         <?php if (isset($success_message)): ?>
@@ -85,6 +83,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <button type="submit" class="btn btn-success">Envoyer</button>
         </form>
+        <a class="btn btn-primary" href="../index.php">Retour à l'accueil</a>
+
     </section>
 </main>
 

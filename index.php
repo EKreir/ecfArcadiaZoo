@@ -1,6 +1,6 @@
 <?php
 // Inclure le fichier de connexion à la base de données
-require '../database/db.php';
+require 'database/db.php';
 
 // Récupération des horaires
 $stmt = $pdo->query("SELECT opening_time, closing_time FROM horaires WHERE id = 1");
@@ -17,20 +17,20 @@ $avis_valides = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Zoo Arcadia</title>
 
 </head>
 <body>
 <header>
     <div class="title">
-    <img src="../uploads/logozoo.jpg" alt="Logo" class="logo"">
+    <img src="uploads/logozoo.jpg" alt="Logo" class="logo"">
     <h1>Bienvenue au Zoo Arcadia</h1>
     </div>
     <nav>
         <ul>
-            <li><a href="menu.php">Menu</a></li>
-            <li><a href="sending.php">Donner son avis</a></li>
+            <li><a href="public/menu.php">Menu</a></li>
+            <li><a href="public/sending.php">Donner son avis</a></li>
         </ul>
     </nav>
 </header>
@@ -49,19 +49,19 @@ $avis_valides = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div id="imageCarousel" class="carousel slide my-4" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="../uploads/pexels-filip-olsok-261056-4003530.jpg" class="d-block w-100" alt="Image 1">
+                <img src="uploads/pexels-filip-olsok-261056-4003530.jpg" class="d-block w-100" alt="Image 1">
             </div>
             <div class="carousel-item">
-                <img src="../uploads/pexels-quang-nguyen-vinh-222549-2154706.jpg" class="d-block w-100" alt="Image 2">
+                <img src="uploads/pexels-quang-nguyen-vinh-222549-2154706.jpg" class="d-block w-100" alt="Image 2">
             </div>
             <div class="carousel-item">
-                <img src="../uploads/pexels-thomas-b-270703-814898.jpg" class="d-block w-100" alt="Image 3">
+                <img src="uploads/pexels-thomas-b-270703-814898.jpg" class="d-block w-100" alt="Image 3">
             </div>
             <div class="carousel-item">
-                <img src="../uploads/tourist-train-938568_1280.jpg" class="d-block w-100" alt="Image 4">
+                <img src="uploads/tourist-train-938568_1280.jpg" class="d-block w-100" alt="Image 4">
             </div>
             <div class="carousel-item">
-                <img src="../uploads/line-1184810_1280.jpg" class="d-block w-100" alt="Image 5">
+                <img src="uploads/line-1184810_1280.jpg" class="d-block w-100" alt="Image 5">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
@@ -144,7 +144,7 @@ $avis_valides = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <footer>
 
-    <p>&copy; 2024 Zoo Arcadia | <a href="contact.php" class="contact">Nous contacter</a></p>
+    <p>&copy; 2024 Zoo Arcadia | <a href="public/contact.php" class="contact">Nous contacter</a></p>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>

@@ -35,6 +35,7 @@ $comments = $pdo->query("SELECT hc.*, h.name AS habitat_name, u.username AS vet_
     <a class="btn btn-primary mt-3" href="create_report.php">Créer un compte rendu</a>
     <a class="btn btn-primary mt-3" href="comment_habitat.php">Commenter un habitat</a>
     <a class="btn btn-primary mt-3" href="give_opinion.php">Avis sur un animal</a>
+    <a class="btn btn-danger mt-3" href="../public/logout.php">Se déconnecter</a>
 
     <h2>Suivi des Animaux</h2>
 
@@ -81,7 +82,6 @@ $comments = $pdo->query("SELECT hc.*, h.name AS habitat_name, u.username AS vet_
         <?php endforeach; ?>
     </ul>
 
-    <a class="btn btn-danger mt-3" href="../public/logout.php">Se déconnecter</a>
 </div>
 </body>
 </html>

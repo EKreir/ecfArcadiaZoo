@@ -100,7 +100,7 @@ $opinions = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <input type="date" name="date_passage" id="date_passage" class="form-control" required>
         </div>
 
-        <button class="btn btn-success" name="submit_opinion" type="submit">Soumettre l'Avis</button>
+        <button class="btn btn-primary" name="submit_opinion" type="submit">Soumettre l'Avis</button>
         <a class="btn btn-secondary" href="index.php">Retour à l'espace vétérinaire</a>
 
     </form>

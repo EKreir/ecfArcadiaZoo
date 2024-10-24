@@ -31,7 +31,7 @@ foreach ($animaux as $animal) {
         <h1>Habitats du Zoo Arcadia</h1>
     </div>
 </header>
-<a class="btn btn-success mt-3" href="../public/menu.php">Retour au menu</a>
+<a class="btn btn-success mt-3" href="menu.php">Retour au menu</a>
 
 <main class="container mt-4">
     <section id="habitats">
@@ -70,7 +70,7 @@ foreach ($animaux as $animal) {
 </main>
 
 <footer>
-    <p>&copy; 2024 Zoo Arcadia | <a href="../public/contact.php" class="contact">Nous contacter</a></p>
+    <p>&copy; 2024 Zoo Arcadia | <a href="contact.php" class="contact">Nous contacter</a></p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

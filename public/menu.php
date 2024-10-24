@@ -27,7 +27,7 @@
     </div>
     <nav>
         <ul>
-            <li><a href="index.php">Retour à la page d'accueil</a></li>
+            <li><a href="../index.php">Retour à la page d'accueil</a></li>
             <li><a href="sending.php">Donner son avis</a></li>
             <li><a href="login.php">Se connecter</a></li>
         </ul>
@@ -43,14 +43,14 @@
                 <h3>Services</h3>
                 <img src="../uploads/pexels-reneasmussen-1581384.jpg" alt="Services" class="img-fluid mb-3">
                 <p>Découvrez nos services variés pour améliorer votre expérience au zoo.</p>
-                <a class="btn btn-success" href="../frontend/service.php">Voir les services</a>
+                <a class="btn btn-success" href="service.php">Voir les services</a>
             </div>
 
             <div class="col-md-6 mb-4">
                 <h3>Habitats</h3>
                 <img src="../uploads/pexels-rifkyilhamrd-788200.jpg" alt="Habitats" class="img-fluid mb-3">
                 <p>Explorez les différents habitats de nos animaux.</p>
-                <a class="btn btn-success" href="../frontend/habitat.php">Voir les habitats</a>
+                <a class="btn btn-success" href="habitat.php">Voir les habitats</a>
             </div>
         </div>
     </section>
