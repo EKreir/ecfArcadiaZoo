@@ -2,6 +2,7 @@ body {
     background: linear-gradient(135deg, #e0f7fa, #a5d6a7);
     animation: background-animation 15s ease infinite;
     font-size: 25px;
+    font-family: 'Roboto', sans-serif;
 }
 
 @keyframes background-animation {
