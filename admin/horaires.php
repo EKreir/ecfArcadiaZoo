@@ -7,7 +7,7 @@ require '../database/db.php';
 require_once '../database/auth.php';
 
 if (!isAuthenticated() || !isAdmin()) {
-    header('Location: ../login.php');
+    header('Location: ?page=login');
     exit();
 }
 
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$opening_time, $closing_time]);
         $_SESSION['message'] = "Horaires créés avec succès.";
     }
-    header('Location: horaires.php');
+    header('Location: ?page=horaires');
     exit();
 }
 ?>
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php endif; ?>
 
     <h2><?= $horairesExistants ? 'Modifier les Horaires' : 'Ajouter les Horaires' ?></h2>
-    <form action="horaires.php" method="POST">
+    <form action="?page=horaires" method="POST">
         <div class="mb-3">
             <input class="form-control" type="time" name="opening_time" value="<?= $horairesExistants ? $horaires[0]['opening_time'] : '' ?>" required>
         </div>

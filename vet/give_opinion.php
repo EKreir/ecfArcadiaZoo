@@ -1,10 +1,13 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require '../database/db.php';
 
 // Vérifier si l'utilisateur est authentifié et s'il est vétérinaire
 if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'vet') {
-    header('Location: ../login.php');
+    header('Location: ?page=login');
     exit();
 }
 
@@ -26,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_opinion'])) {
     $stmt->execute([$animal_id, $vet_id, $etat, $nourriture, $grammage, $date_passage]);
 
     $_SESSION['message'] = "Avis ajouté avec succès.";
-    header("Location: give_opinion.php");
+    header("Location: ?page=give_opinion");
     exit();
 }
 
@@ -43,12 +46,12 @@ if (isset($_POST['edit_opinion'])) {
     $stmt->execute([$etat, $nourriture, $grammage, $date_passage, $opinion_id]);
 
     $_SESSION['message'] = "Avis modifié avec succès.";
-    header("Location: give_opinion.php");
+    header("Location: ?page=give_opinion");
     exit();
 }
 
-// Récupérer les avis existants
-$stmt = $pdo->prepare("SELECT o.*, u.username FROM animal_opinions o JOIN users u ON o.vet_id = u.id");
+// Récupérer les avis existants avec le nom de l'animal
+$stmt = $pdo->prepare("SELECT o.*, u.username, a.name AS animal_name FROM animal_opinions o JOIN users u ON o.vet_id = u.id JOIN animaux a ON o.animal_id = a.id");
 $stmt->execute();
 $opinions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -101,16 +104,14 @@ $opinions = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
 
         <button class="btn btn-primary" name="submit_opinion" type="submit">Soumettre l'Avis</button>
-        <a class="btn btn-secondary" href="index.php">Retour à l'espace vétérinaire</a>
-
+        <a class="btn btn-secondary" href="?page=vet">Retour à l'espace vétérinaire</a>
     </form>
 
     <h3>Avis des Vétérinaires</h3>
     <ul class="list-group">
         <?php foreach ($opinions as $opinion): ?>
             <li class="list-group-item">
-                <strong><?= htmlspecialchars($opinion['username']) ?>:</strong>
-                <p>Animal ID: <?= htmlspecialchars($opinion['animal_id']) ?></p>
+                <strong><?= htmlspecialchars($opinion['username']) ?> (<?= htmlspecialchars($opinion['animal_name']) ?>):</strong>
                 <p>État: <?= htmlspecialchars($opinion['etat']) ?></p>
                 <p>Nourriture: <?= htmlspecialchars($opinion['nourriture']) ?></p>
                 <p>Grammage: <?= htmlspecialchars($opinion['grammage']) ?> Kg</p>
@@ -150,14 +151,20 @@ $opinions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <script>
     function editOpinion(id, etat, nourriture, grammage, date_passage) {
+        console.log("Modifier l'avis ID:", id); // Debug
+
+        // Remplir le formulaire
         document.getElementById('opinion_id').value = id;
         document.getElementById('edit_etat').value = etat;
         document.getElementById('edit_nourriture').value = nourriture;
         document.getElementById('edit_grammage').value = grammage;
         document.getElementById('edit_date_passage').value = date_passage;
 
-        document.getElementById('editOpinionForm').style.display = 'block';
+        // Afficher le formulaire de modification
+        const editForm = document.getElementById('editOpinionForm');
+        editForm.style.display = (editForm.style.display === 'none' || editForm.style.display === '') ? 'block' : 'none';
     }
+
 </script>
 </body>
 </html>

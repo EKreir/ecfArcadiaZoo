@@ -1,11 +1,14 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require '../database/db.php'; // Connexion à la base de données
 require_once '../database/auth.php'; // Authentification
 
 // Vérifier si l'utilisateur est authentifié
 if (!isAuthenticated()) {
-    header('Location: ../login.php'); // Rediriger vers la page de connexion
+    header('Location: ?page=login'); // Rediriger vers la page de connexion
     exit();
 }
 
@@ -33,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 // Gérer l'erreur de téléchargement si nécessaire
                 $_SESSION['error_message'] = "Erreur lors du téléchargement de l'image.";
-                header('Location: ' . $_SERVER['PHP_SELF']);
+                header('Location: ?page=modifier_services');
                 exit();
             }
         }
@@ -42,8 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare("UPDATE services SET title = ?, description = ?, image = ? WHERE id = ?");
         $stmt->execute([$title, $description, $image, $id]);
     }
+
+    // Message de succès
     $_SESSION['success_message'] = "Services modifiés avec succès !";
-    header('Location: ' . $_SERVER['PHP_SELF']); // Rediriger vers le même script
+    header('Location: ?page=modifier_services'); // Rediriger vers le même script
     exit();
 }
 ?>
@@ -110,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit" class="btn btn-primary">Enregistrer les Modifications</button>
     </form>
 
-    <a class="btn btn-secondary mt-3" href="index.php">Retour à l'espace employé</a>
+    <a class="btn btn-secondary mt-3" href="?page=employe">Retour à l'espace employé</a>
 </div>
 </body>
 </html>

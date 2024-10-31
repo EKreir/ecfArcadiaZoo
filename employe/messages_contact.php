@@ -1,11 +1,15 @@
 <?php
-session_start();
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require '../database/db.php'; // Connexion à la base de données
 require_once '../database/auth.php'; // Authentification
 
 // Vérifier si l'utilisateur est authentifié
 if (!isAuthenticated()) {
-    header('Location: ../login.php'); // Rediriger vers la page de connexion
+    header('Location: ?page=login'); // Rediriger vers la page de connexion
     exit();
 }
 
@@ -61,7 +65,7 @@ $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
 <div class="container">
     <h1>Messages de Contact</h1>
-    <a class="btn btn-secondary mt-3" href="index.php">Retour à l'espace employé</a>
+    <a class="btn btn-secondary mt-3" href="?page=employe">Retour à l'espace employé</a>
 
     <?php if (isset($_SESSION['success_message'])): ?>
         <div class="alert alert-success" role="alert">

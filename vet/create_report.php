@@ -1,10 +1,13 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require '../database/db.php'; // Connexion à la base de données
 
 // Vérifier si l'utilisateur est authentifié et s'il est vétérinaire
 if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'vet') {
-    header('Location: ../login.php'); // Rediriger vers la page de connexion
+    header('Location: ?page=login'); // Rediriger vers la page de connexion
     exit();
 }
 
@@ -69,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <button type="submit" class="btn btn-primary">Envoyer</button>
-        <a class="btn btn-secondary" href="index.php">Retour à l'espace vétérinaire</a>
+        <a class="btn btn-secondary" href="?page=vet">Retour à l'espace vétérinaire</a>
     </form>
 </div>
 </body>

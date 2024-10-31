@@ -1,11 +1,14 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require '../database/db.php'; // Connexion à la base de données
 require_once '../database/auth.php'; // Authentification
 
 // Vérifier si l'utilisateur est authentifié
 if (!isAuthenticated()) {
-    header('Location: ../login.php'); // Rediriger vers la page de connexion
+    header('Location: ?page=login'); // Rediriger vers la page de connexion
     exit();
 }
 
@@ -24,8 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare("INSERT INTO consommation (animal_id, date, heure, type_nourriture, quantite) VALUES (?, ?, ?, ?, ?)");
     $stmt->execute([$animal_id, $date, $heure, $type_nourriture, $quantite]);
 
+    // Message de succès
     $_SESSION['success_message'] = "Consommation enregistrée avec succès !";
-    header('Location: ' . $_SERVER['PHP_SELF']); // Rediriger vers le même script
+    header('Location: ?page=enregistrer_consommation'); // Rediriger vers employe.php
     exit();
 }
 ?>
@@ -77,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit" class="btn btn-primary">Enregistrer</button>
     </form>
 
-    <a class="btn btn-secondary mt-3" href="index.php">Retour à l'espace employé</a>
+    <a class="btn btn-secondary mt-3" href="?page=employe">Retour à l'espace employé</a>
 </div>
 </body>
 </html>

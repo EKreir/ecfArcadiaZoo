@@ -7,7 +7,7 @@ require '../database/db.php';
 require_once '../database/auth.php';
 
 if (!isAuthenticated() || !isAdmin()) {
-    header('Location: ../login.php');
+    header('Location: ?page=login');
     exit();
 }
 
@@ -34,7 +34,7 @@ $habitats = $pdo->query("SELECT * FROM habitats")->fetchAll(PDO::FETCH_ASSOC);
     <?php endif; ?>
 
     <h2>Gestion des Animaux</h2>
-    <form action="traitement/manage_animals.php" method="POST" enctype="multipart/form-data">
+    <form action="?page=manage_animals" method="POST" enctype="multipart/form-data">
         <input class="form-control mb-3" type="text" name="animal_name" placeholder="Nom de l'animal" required>
         <input class="form-control mb-3" type="text" name="animal_race" placeholder="Race de l'animal" required> <!-- Champ ajouté -->
         <textarea class="form-control mb-3" name="animal_description" placeholder="Description de l'animal" required></textarea>
@@ -59,8 +59,8 @@ $habitats = $pdo->query("SELECT * FROM habitats")->fetchAll(PDO::FETCH_ASSOC);
                 </div>
                 <?= $animal['name'] ?>
                 <div>
-                    <a href="edit/edit_animal.php?id=<?= $animal['id'] ?>" class="btn btn-warning btn-sm">Modifier</a>
-                    <a href="traitement/manage_animals.php?delete=<?= $animal['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet animal ?')">Supprimer</a>
+                    <a href="?page=edit_animal&id=<?= $animal['id'] ?>" class="btn btn-warning btn-sm">Modifier</a>
+                    <a href="?page=manage_animals&delete=<?= $animal['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet animal ?')">Supprimer</a>
                 </div>
             </li>
         <?php endforeach; ?>

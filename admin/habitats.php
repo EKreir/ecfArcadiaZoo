@@ -7,7 +7,7 @@ require '../database/db.php';
 require_once '../database/auth.php';
 
 if (!isAuthenticated() || !isAdmin()) {
-header('Location: ../login.php');
+header('Location: ?page=login');
 exit();
 }
 
@@ -37,12 +37,12 @@ if (move_uploaded_file($tmp_name, $image_path)) {
 // L'image a été déplacée avec succès, on peut insérer dans la base de données
 } else {
 $_SESSION['message'] = "Erreur lors de l'upload de l'image.";
-header('Location: habitats.php');
+header('Location: ?page=habitats');
 exit(); // Arrêter l'exécution pour éviter des erreurs supplémentaires
 }
 } else {
 $_SESSION['message'] = "Aucune image téléchargée.";
-header('Location: habitats.php');
+header('Location: ?page=habitats');
 exit(); // Arrêter l'exécution si aucune image n'est fournie
 }
 
@@ -52,12 +52,12 @@ $stmt = $pdo->prepare("INSERT INTO habitats (name, description, image) VALUES (?
 $stmt->execute([$name, $description, $image_path]);
 } else {
 $_SESSION['message'] = "Erreur lors de l'ajout de l'habitat.";
-header('Location: habitats.php');
+header('Location: ?page=habitats');
 exit();
 }
 
 $_SESSION['message'] = "Habitat ajouté avec succès.";
-header('Location: habitats.php'); // Redirection après l'ajout réussi
+header('Location: ?page=habitats'); // Redirection après l'ajout réussi
 exit();
 }
 
@@ -67,7 +67,7 @@ $id = $_GET['delete'];
 $stmt = $pdo->prepare("DELETE FROM habitats WHERE id = ?");
 $stmt->execute([$id]);
 $_SESSION['message'] = "Habitat supprimé avec succès.";
-header('Location: habitats.php');
+header('Location: ?page=habitats');
 exit();
 }
 ?>
@@ -91,7 +91,7 @@ exit();
         <?php unset($_SESSION['message']); ?>
     <?php endif; ?>
 
-    <form action="habitats.php" method="POST" enctype="multipart/form-data">
+    <form action="?page=habitats" method="POST" enctype="multipart/form-data">
         <input class="form-control mb-3" type="text" name="habitat_name" placeholder="Nom de l'habitat" required>
         <textarea class="form-control mb-3" name="habitat_description" placeholder="Description de l'habitat" required></textarea>
         <input type="file" class="form-control mb-3" name="habitat_image" accept="image/*" required>
@@ -107,8 +107,8 @@ exit();
                     <?php if ($habitat['image']): ?>
                         <img src="<?= $habitat['image'] ?>" alt="<?= $habitat['name'] ?>" style="width: 100px; height: auto;">
                     <?php endif; ?>
-                    <a href="edit/edit_habitat.php?id=<?= $habitat['id'] ?>" class="btn btn-warning btn-sm">Modifier</a>
-                    <a href="?delete=<?= $habitat['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet habitat ?')">Supprimer</a>
+                    <a href="?page=edit_habitat&id=<?= $habitat['id'] ?>" class="btn btn-warning btn-sm">Modifier</a>
+                    <a href="?page=habitats&delete=<?= $habitat['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet habitat ?')">Supprimer</a>
                 </div>
             </li>
         <?php endforeach; ?>

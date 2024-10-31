@@ -60,8 +60,9 @@ try {
             <th>Date</th>
             <th>
                 <div class="btn-group" role="group" aria-label="Tri par date">
-                    <a href="?sort=asc" class="btn btn-outline-primary">Date &#9650;</a>
-                    <a href="?sort=desc" class="btn btn-outline-primary">Date &#9660;</a>
+                    <a href="?page=view_report&sort=asc" class="btn btn-outline-primary">Date &#9650;</a>
+                    <a href="?page=view_report&sort=desc" class="btn btn-outline-primary">Date &#9660;</a>
+
                 </div>
             </th>
         </tr>
@@ -77,7 +78,7 @@ try {
                     <td><?= htmlspecialchars($report['id']) ?></td>
                     <td><?= htmlspecialchars($report['animal_name']) ?></td>
                     <td><?= htmlspecialchars($report['animal_race']) ?></td>
-                    <td><?= htmlspecialchars($report['habitat_name']) ?></td> <!-- Affichage de l'habitat -->
+                    <td><?= htmlspecialchars($report['habitat_name']) ?></td>
                     <td><?= htmlspecialchars($report['vet_name']) ?></td>
                     <td><?= htmlspecialchars($report['report_text']) ?></td>
                     <td><?= htmlspecialchars($report['created_at']) ?></td>

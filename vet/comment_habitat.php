@@ -1,11 +1,14 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require '../database/db.php';
 require_once '../database/auth.php';
 
 // Vérifier si l'utilisateur est authentifié et s'il est vétérinaire
 if (!isAuthenticated() || !isVeterinaire()) {
-    header('Location: ../login.php'); // Rediriger vers la page de connexion
+    header('Location: ?page=login'); // Rediriger vers la page de connexion
     exit();
 }
 
@@ -22,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['habitat_id'], $_POST[
     $stmt->execute([$habitat_id, $vet_id, $comment]);
 
     $_SESSION['message'] = "Commentaire ajouté avec succès.";
-    header('Location: comment_habitat.php'); // Redirection après l'ajout réussi
+    header('Location: ?page=comment_habitat'); // Redirection après l'ajout réussi
     exit();
 }
 
@@ -37,7 +40,7 @@ if (isset($_GET['delete_id'])) {
     $stmt = $pdo->prepare("DELETE FROM habitat_comments WHERE id = ?");
     $stmt->execute([$_GET['delete_id']]);
     $_SESSION['message'] = "Commentaire supprimé avec succès.";
-    header('Location: comment_habitat.php');
+    header('Location: ?page=comment_habitat');
     exit();
 }
 
@@ -61,7 +64,7 @@ if (isset($_GET['delete_id'])) {
         <?php unset($_SESSION['message']); ?>
     <?php endif; ?>
 
-    <form action="comment_habitat.php" method="POST">
+    <form action="?page=comment_habitat" method="POST">
         <div class="mb-3">
             <label for="habitat_id" class="form-label">Sélectionner un Habitat</label>
             <select name="habitat_id" class="form-select" required>
@@ -76,7 +79,7 @@ if (isset($_GET['delete_id'])) {
             <textarea name="comment" class="form-control" required></textarea>
         </div>
         <button class="btn btn-primary" type="submit">Ajouter Commentaire</button>
-        <a class="btn btn-secondary" href="index.php">Retour à l'espace vétérinaire</a>
+        <a class="btn btn-secondary" href="?page=vet">Retour à l'espace vétérinaire</a>
     </form>
 
     <h3>Commentaires des Habitats</h3>
@@ -85,8 +88,8 @@ if (isset($_GET['delete_id'])) {
             <li class="list-group-item">
                 <strong><?= htmlspecialchars($comment['habitat_name']) ?></strong> - Commenté par <?= htmlspecialchars($comment['vet_name']) ?> le <?= htmlspecialchars($comment['created_at']) ?>
                 <p><?= htmlspecialchars($comment['comment']) ?></p>
-                <a href="traitement/edit_comment.php?id=<?= $comment['id'] ?>" class="btn btn-warning btn-sm">Modifier</a>
-                <a href="?delete_id=<?= $comment['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?');">Supprimer</a>
+                <a href="?page=edit_comment&id=<?= $comment['id'] ?>" class="btn btn-warning btn-sm">Modifier</a>
+                <a href="?page=comment_habitat&delete_id=<?= $comment['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?');">Supprimer</a>
             </li>
         <?php endforeach; ?>
     </ul>

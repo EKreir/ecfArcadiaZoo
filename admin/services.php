@@ -7,7 +7,7 @@ require '../database/db.php';
 require_once '../database/auth.php';
 
 if (!isAuthenticated() || !isAdmin()) {
-    header('Location: ../login.php');
+    header('Location: ?page=login');
     exit();
 }
 
@@ -30,12 +30,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (!move_uploaded_file($tmp_name, $image_path)) {
             $_SESSION['message'] = "Erreur lors de l'upload de l'image.";
-            header('Location: services.php');
+            header('Location: ?page=services');
             exit();
         }
     } else {
         $_SESSION['message'] = "Aucune image téléchargée.";
-        header('Location: services.php');
+        header('Location: ?page=services');
         exit();
     }
 
@@ -43,17 +43,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare("INSERT INTO services (title, description, image) VALUES (?, ?, ?)");
     $stmt->execute([$title, $description, $image_path]);
     $_SESSION['message'] = "Service ajouté avec succès.";
-    header('Location: services.php');
+    header('Location: ?page=services');
     exit();
 }
 
 // Suppression d'un service
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
-    $stmt = $pdo->prepare("DELETE FROM services WHERE id = ?");
+
+    // Vérification de l'existence du service avant suppression
+    $stmt = $pdo->prepare("SELECT * FROM services WHERE id = ?");
     $stmt->execute([$id]);
-    $_SESSION['message'] = "Service supprimé avec succès.";
-    header('Location: services.php');
+
+    if ($stmt->rowCount() > 0) {
+        // Supprime le service
+        $stmt = $pdo->prepare("DELETE FROM services WHERE id = ?");
+        $stmt->execute([$id]);
+        $_SESSION['message'] = "Service supprimé avec succès.";
+    } else {
+        $_SESSION['message'] = "Le service demandé n'existe pas.";
+    }
+
+    // Pas de redirection ici, juste reste sur la même page
+    header('Location: ?page=services'); // Rediriger pour afficher le message
     exit();
 }
 
@@ -72,18 +84,17 @@ $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 <div class="container">
-    <?php include 'navbar.php' ?>
+    <?php include 'navbar.php'; ?>
 
     <?php if (isset($_SESSION['message'])) : ?>
         <div class="alert alert-success">
-            <?= $_SESSION['message'] ?>
+            <?= htmlspecialchars($_SESSION['message']) ?>
         </div>
         <?php unset($_SESSION['message']); ?>
     <?php endif; ?>
 
     <h2>Administration des Services</h2>
     <form method="post" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="">
         <div class="mb-3">
             <label class="form-label" for="title">Titre :</label>
             <input class="form-control" type="text" name="title" required>
@@ -101,10 +112,10 @@ $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <div>
                     <strong><?php echo htmlspecialchars($service['title']); ?></strong><br>
-                    <img src="<?= $service['image'] ?>" alt="<?= htmlspecialchars($service['title']) ?>" style="width: 100px; height: auto;">
+                    <img src="<?= htmlspecialchars($service['image']) ?>" alt="<?= htmlspecialchars($service['title']) ?>" style="width: 100px; height: auto;">
                 </div>
                 <div>
-                    <a href="?delete=<?= $service['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce service ?')">Supprimer</a>
+                    <a href="?page=services&delete=<?= $service['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce service ?')">Supprimer</a>
                 </div>
             </li>
         <?php endforeach; ?>

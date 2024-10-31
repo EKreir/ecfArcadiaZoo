@@ -23,7 +23,7 @@ function login($username, $password) {
         if (password_verify($password, $user['password'])) {
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = $user['role'];
-            $_SESSION['user_id'] = $user['id']; // Ajout de cette ligne pour stocker l'ID de l'utilisateur
+            $_SESSION['user_id'] = $user['id']; // Pour stocker l'ID de l'utilisateur
             return true;
         }
     } else {
