@@ -1,12 +1,13 @@
 <?php
-$host = 'localhost';
-$db = 'visiteurs';
-$user = 'eliess';
-$pass = 'Eliess2001#@!';
+require '../vendor/autoload.php';
 
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-}
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../'); // Chemin vers le dossier contenant le fichier .env
+$dotenv->load();
+
+$host = $_ENV['DB_HOST'];
+$db = $_ENV['DB_NAME'];
+$user = $_ENV['DB_USER'];
+$pass = $_ENV['DB_PASS'];
+
+$pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

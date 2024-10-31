@@ -8,12 +8,6 @@ require 'db.php';
 function login($username, $password) {
     global $pdo;
 
-    // Débogage : Vérifiez la connexion à la base de données
-    if (!$pdo) {
-        echo "Erreur de connexion à la base de données.<br>";
-        return false;
-    }
-
     $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
     $stmt->execute([$username]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -23,12 +17,10 @@ function login($username, $password) {
         if (password_verify($password, $user['password'])) {
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = $user['role'];
-            $_SESSION['user_id'] = $user['id']; // Pour stocker l'ID de l'utilisateur
+            $_SESSION['user_id'] = $user['id'];
             return true;
         }
-    } else {
-            echo "Aucun utilisateur trouvé avec ce nom d'utilisateur.<br>";
-        }
+    }
 
     return false;
 }
