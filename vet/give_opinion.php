@@ -6,10 +6,11 @@ if (session_status() === PHP_SESSION_NONE) {
 require '../database/db.php';
 
 // Vérifier si l'utilisateur est authentifié et s'il est vétérinaire
-if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'vet') {
-    header('Location: ?page=login');
+if (!isAuthenticated() || !isVeterinaire()) {
+    header('Location: ?page=login'); // Rediriger vers la page de connexion
     exit();
 }
+
 
 // Récupérer tous les animaux pour le menu déroulant
 $stmt = $pdo->query("SELECT * FROM animaux");

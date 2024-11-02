@@ -1,6 +1,17 @@
 <?php
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+
 require '../database/db.php';
 require '../database/client.php';
+
+if (!isAuthenticated() || !isAdmin()) {
+    header('Location: ?page=login');
+    exit();
+}
 
 $collection = $client->animal_db->animal_views;
 $consultations = $collection->find();

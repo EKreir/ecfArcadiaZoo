@@ -7,7 +7,7 @@ require_once '../database/auth.php'; // Inclure l'authentification si nécessair
 
 // Vérifiez si l'utilisateur est connecté et a le bon rôle
 if (!isAuthenticated() || !isAdmin()) {
-    header('Location: ../login.php');
+    header('Location: ?page=login');
     exit();
 }
 

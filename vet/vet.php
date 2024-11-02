@@ -6,10 +6,11 @@ if (session_status() === PHP_SESSION_NONE) {
 require '../database/db.php'; // Connexion à la base de données
 
 // Vérifier si l'utilisateur est authentifié et s'il est vétérinaire
-if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'vet') {
+if (!isAuthenticated() || !isVeterinaire()) {
     header('Location: ?page=login'); // Rediriger vers la page de connexion
     exit();
 }
+
 
 // Récupération des données de consommation triées par date
 $stmt = $pdo->query("SELECT c.*, a.name AS animal_name, a.race AS animal_race, h.name AS habitat_name 

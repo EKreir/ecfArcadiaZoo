@@ -8,10 +8,11 @@ require '../database/db.php'; // Connexion à la base de données
 require_once '../database/auth.php'; // Authentification
 
 // Vérifier si l'utilisateur est authentifié
-if (!isAuthenticated()) {
+if (!isAuthenticated() || !isEmployee()) {
     header('Location: ?page=login'); // Rediriger vers la page de connexion
     exit();
 }
+
 
 // Traitement des messages de contact
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
