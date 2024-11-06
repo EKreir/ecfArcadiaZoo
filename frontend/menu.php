@@ -30,7 +30,6 @@
         <ul>
             <li><a href="?page=home">Retour à la page d'accueil</a></li>
             <li><a href="?page=sending">Donner son avis</a></li>
-            <li><a href="?page=login">Se connecter</a></li>
         </ul>
     </nav>
 </header>
