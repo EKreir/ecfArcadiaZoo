@@ -57,7 +57,7 @@
 </main>
 
 <footer>
-    <p>&copy; 2024 Zoo Arcadia | <a href="?page=contact" class="contact">Nous contacter</a></p>
+    <p>&copy; 2024 Zoo Arcadia | <a href="?page=contact" class="contact">Nous contacter</a> | <a href="?page=login" class="contact">Connexion</a></p>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
