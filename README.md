@@ -7,6 +7,7 @@ project deployed in Hostinger vps (server) : http://srv636593.hstgr.cloud:81/
 
 project deployed in Hostinger web host : https://arcadia.press/
 
+
 # to deploy the project locally, you must configure the workspace: 
 
 1. install php, mysql (or other database server, ex.: psotgresql, mariadb,...), apache in terminal (check docs for each language for installation in different os),
@@ -40,6 +41,7 @@ optional: install phpdotenv to integrate an .env file for the php file which man
 
 - and finally, all that remains is to test locally to visualize the project.
 
+
 # with git : 
 
 clone the project :
@@ -63,3 +65,13 @@ for my part I have a linux distribution (ubuntu 24.04) `sudo apt install compose
 # graphic charter
 
 link of Figma models (mockup & wireframes in mobile & desktop format: https://www.figma.com/design/iYz2yZt5Hs77gQe9HoIOnX/arcadiaMaquette?node-id=0-1&node-type=canvas&t=oEFsGAmfBbn4hIcx-0
+
+
+# technologies used
+
+The site is developed with the following technologies :
+  . HTML 5
+  . CSS 3 (Bootsrtap 5)
+  . PHP 8+
+  . MySQL
+  . MongoDB
