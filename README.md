@@ -11,13 +11,14 @@ project deployed in Hostinger web host : https://arcadia.press/
 
 1. install php, mysql (or other database server, e.g. psotgresql, mariadb,...), apache in terminal (check docs for each language for installation in different os),
 
--check the php and mysql installations: php -v or php --version, the same for mysql in terminal,
+-check the php and mysql installations: `php -v` or `php --version`, the same for mysql in terminal,
 
 2. create an account (user & password) in mysql server cli in terminal,
 
-create a database either in the terminal so on the command line or using phpmyadmin but you have to install and configure it,
+3. create a database either in the terminal so on the command line or using phpmyadmin but you have to install and configure it,
 
 download the zip in master branch,
+- in the .zip there is a sql file to import in phpmyadmin to have the same data from the db,
 
 install the php dependency manager: Composer in terminal,
 
