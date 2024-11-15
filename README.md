@@ -71,7 +71,11 @@ link of Figma models (mockup & wireframes in mobile & desktop format: https://ww
 
 The site is developed with the following technologies :
   . HTML 5
+  
   . CSS 3 (Bootsrtap 5)
+  
   . PHP 8+
+  
   . MySQL
+  
   . MongoDB
