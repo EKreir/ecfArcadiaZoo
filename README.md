@@ -46,4 +46,10 @@ clone the project :
 
 then execute : 
 
-`git checkout master` for master branch or `git checkout dev` for dev branch
+`git checkout master` for master branch or `git checkout dev` for dev branch (because the main branch is empty)
+
+then install composer (if not done, for managing dependencies and libraries) : 
+
+for my part I have a linux distribution (ubuntu 24.04) `sudo apt install composer`
+
+- and finally, all that remains is to test locally to visualize the project.
