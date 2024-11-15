@@ -34,6 +34,8 @@ optional: install phpdotenv to integrate an .env file for the php file which man
 
 9. modify the values ​​in the mysql and mongodb database connection files with yours (user, password, host, dbname,...),
 
+- be careful, the identifiers (user, password, etc...) must be modified in the .env file or otherwise put these values ​​in the db.php file,
+
 10. launch the apache service,
 
 - and finally, all that remains is to test locally to visualize the project.
