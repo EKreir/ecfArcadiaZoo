@@ -46,6 +46,10 @@ clone the project :
 
 `git clone https://github.com/EKreir/ecfArcadiaZoo.git`
 
+go to directory :
+
+`cd directory_name`
+
 then execute : 
 
 `git checkout master` for master branch or `git checkout dev` for dev branch (because the main branch is empty)
