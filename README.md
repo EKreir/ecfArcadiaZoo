@@ -42,7 +42,7 @@ optional: install phpdotenv to integrate an .env file for the php file which man
 - and finally, all that remains is to test locally to visualize the project.
 
 
-# with git : 
+# deploy the project locally with git : 
 
 clone the project :
 
