@@ -9,7 +9,7 @@ project deployed in Hostinger web host : https://arcadia.press/
 
 # to deploy the project locally, you must configure the workspace: 
 
-1. install php, mysql (or other database server, e.g. psotgresql, mariadb,...), apache in terminal (check docs for each language for installation in different os),
+1. install php, mysql (or other database server, ex.: psotgresql, mariadb,...), apache in terminal (check docs for each language for installation in different os),
 
 - check the php and mysql installations: `php -v` or `php --version`, the same for mysql in terminal,
 
