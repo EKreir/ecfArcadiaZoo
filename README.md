@@ -42,4 +42,8 @@ optional: install phpdotenv to integrate an .env file for the php file which man
 
 clone the project :
 
-`git clone`
+`git clone https://github.com/EKreir/ecfArcadiaZoo.git`
+
+then execute : 
+
+`git checkout master` for master branch or `git checkout dev` for dev branch
