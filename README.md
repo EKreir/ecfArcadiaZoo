@@ -39,7 +39,7 @@ optional: install phpdotenv to integrate an .env file for the php file which man
 
 10. launch the apache service,
 
-- and finally, all that remains is to test locally to visualize the project.
+- and finally, all that remains is to test locally to visualize the project. You must launch the index.php file in the public directory
 
 
 # deploy the project locally with git : 
@@ -60,11 +60,11 @@ then install composer (if not done, for managing dependencies and libraries) :
 
 for my part I have a linux distribution (ubuntu 24.04) `sudo apt install composer`
 
-- and finally, all that remains is to test locally to visualize the project.
+- and finally, all that remains is to test locally to visualize the project. You must launch the index.php file in the public directory
 
 # graphic charter
 
-link of Figma models (mockup & wireframes in mobile & desktop format: https://www.figma.com/design/iYz2yZt5Hs77gQe9HoIOnX/arcadiaMaquette?node-id=0-1&node-type=canvas&t=oEFsGAmfBbn4hIcx-0
+link of Figma models (graphic charter, mockup & wireframes in mobile & desktop format): https://www.figma.com/design/iYz2yZt5Hs77gQe9HoIOnX/arcadiaMaquette?node-id=0-1&node-type=canvas&t=bmEv193IGEfD87Gm-0
 
 
 # technologies used
