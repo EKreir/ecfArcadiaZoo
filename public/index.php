@@ -10,7 +10,7 @@ if (isset($_GET['page'])) {
 }
 
 // Définir les pages autorisées pour le frontend
-$frontend_pages = ['home', 'menu', 'contact', 'sending', 'service', 'animal', 'habitat', 'login', 'logout'];
+$frontend_pages = ['home', 'menu', 'contact', 'sending', 'service', 'animal', 'habitat', 'login', 'logout', 'legacy'];
 
 // Définir les pages autorisées pour l'admin
 $admin_pages = ['admin', 'horaires', 'habitats', 'animaux', 'services', 'view_report',

@@ -145,6 +145,7 @@ $avis_valides = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <footer>
 
+    <a href="?page=legacy" class="contact">Mention légale</a>
     <p>&copy; 2024 Zoo Arcadia | <a href="?page=contact" class="contact">Nous contacter</a></p>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

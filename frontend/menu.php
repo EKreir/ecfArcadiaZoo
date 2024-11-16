@@ -29,6 +29,7 @@
     <nav>
         <ul>
             <li><a href="?page=home">Retour à la page d'accueil</a></li>
+            <br>
             <li><a href="?page=sending">Donner son avis</a></li>
         </ul>
     </nav>

@@ -2,3 +2,4 @@
 .env
 /uploads/
 visiteurs.sql
+animal_db.animal_views.json
