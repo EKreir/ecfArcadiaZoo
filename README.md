@@ -74,6 +74,7 @@ link of Figma models (graphic charter, mockup & wireframes in mobile & desktop f
 # technologies used
 
 The site is developed with the following technologies :
+
   . HTML 5
   
   . CSS 3 (Bootsrtap 5)
