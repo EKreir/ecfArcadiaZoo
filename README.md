@@ -62,7 +62,7 @@ then install composer (if not done, for managing dependencies and libraries) :
 
 for my part I have a linux distribution (ubuntu 24.04) `sudo apt install composer`
 
-- be careful, the identifiers (user, password, etc...) must be modified in the .env file or otherwise put these values ​​in the db.php file,
+- be careful, the identifiers (user, password, host, dbname) must be modified in the .env file or otherwise put these values ​​in the db.php file,
 
 - and finally, all that remains is to test locally to visualize the project. You must launch the index.php file in the public directory
 
