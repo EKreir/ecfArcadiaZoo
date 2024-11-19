@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->Body = "Votre message a été reçu avec succès : <strong>$description</strong>";
 
         $mail->send();
-        $success_message = "Votre message a été envoyé avec succès!";
+        $success_message = "Votre message a été envoyé avec succès. Nous vous répondrons dans les plus brefs délais.";
     } catch (Exception $e) {
         $error_message = "Erreur d'envoi : {$mail->ErrorInfo}";
     }
@@ -82,8 +82,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
+            <br>
             <button type="submit" class="btn btn-success">Envoyer</button>
         </form>
+        <br>
         <a class="btn btn-primary" href="?page=home">Retour à l'accueil</a>
 
     </section>

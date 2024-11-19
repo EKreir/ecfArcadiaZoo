@@ -58,9 +58,10 @@ try {
                 <label for="contenu">Avis:</label>
                 <textarea class="form-control" id="contenu" name="contenu" required></textarea>
             </div>
+            <br>
             <button type="submit" class="btn btn-success">Envoyer l'avis</button>
         </form>
-
+        <br>
         <a class="btn btn-primary mt-3" href="?page=home">Retour à l'accueil</a>
     </section>
 </main>
